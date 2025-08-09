@@ -23,6 +23,9 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml --no-transfer-progress
 
+    - name: Write Google service account secret JSON to file
+      run: echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}" > service_account.json
+
     - name: Start Notion Backup
       run: java -jar ./target/notion-backup-1.0-SNAPSHOT.jar
       env:
@@ -31,8 +34,6 @@ jobs:
         NOTION_FLATTEN_EXPORT_FILETREE: "true"
 
         GOOGLE_DRIVE_ROOT_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_ROOT_FOLDER_ID }}
-        GOOGLE_DRIVE_SERVICE_ACCOUNT: ${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT }}
-        GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON: ${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}
         GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_FILE_PATH: service_account.json
         
         DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
