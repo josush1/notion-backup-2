@@ -23,11 +23,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml --no-transfer-progress
 
-    - name: Create Google Service Account JSON file
-      run: |
-        echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}" > service_account.json
-
-
     - name: Start Notion Backup
       run: java -jar ./target/notion-backup-1.0-SNAPSHOT.jar
       env:
