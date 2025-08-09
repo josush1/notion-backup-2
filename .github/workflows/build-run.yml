@@ -1,3 +1,7 @@
+    - name: Create Google Service Account JSON file
+      run: |
+        echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}" > service_account.json
+
 name: Start Notion backup
 
 on:
