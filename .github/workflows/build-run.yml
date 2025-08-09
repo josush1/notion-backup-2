@@ -26,6 +26,8 @@ jobs:
     - name: Create Google Service Account JSON file
       run: |
         echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}" > service_account.json
+    - name: Check service_account.json content
+      run: cat service_account.json
 
     - name: Start Notion Backup
       run: java -jar ./target/notion-backup-1.0-SNAPSHOT.jar
