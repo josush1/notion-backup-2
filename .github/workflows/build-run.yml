@@ -27,9 +27,6 @@ jobs:
       run: |
         echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}" > service_account.json
 
-    - name: Wait before starting backup
-      run: sleep 180  # aspetta 3 minuti per il completamento export Notion
-
     - name: Start Notion Backup
       run: java -jar ./target/notion-backup-1.0-SNAPSHOT.jar
       env:
