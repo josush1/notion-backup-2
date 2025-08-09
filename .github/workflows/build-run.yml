@@ -1,17 +1,12 @@
-    - name: Create Google Service Account JSON file
-      run: |
-        echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}" > service_account.json
-
 name: Start Notion backup
 
 on:
   push:
     branches: [ master ]
 
-  # adds a "run workflow" button to the page
-  workflow_dispatch:
+  workflow_dispatch: # per avvio manuale
 
-  # will be triggered at 04:05 on every 2nd day-of-month from 2 through 30.
+  # ogni 2 giorni alle 04:05 UTC
   schedule:
     - cron: '5 4 2-30/2 * *'
 
@@ -28,6 +23,11 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml --no-transfer-progress
+
+    # Nuovo step: crea il file JSON da usare
+    - name: Create Google Service Account JSON file
+      run: |
+        echo "${{ secrets.GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_JSON }}" > service_account.json
 
     - name: Start Notion Backup
       run: java -jar ./target/notion-backup-1.0-SNAPSHOT.jar
