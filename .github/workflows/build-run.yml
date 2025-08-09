@@ -33,7 +33,7 @@ jobs:
         NOTION_TOKEN_V2: ${{ secrets.NOTION_TOKEN_V2 }}
         NOTION_FLATTEN_EXPORT_FILETREE: "true"
 
-        GOOGLE_DRIVE_ROOT_FOLDER_ID: ${{ secrets.GOOGLE_DRIVE_ROOT_FOLDER_ID }}
+        
         GOOGLE_DRIVE_SERVICE_ACCOUNT_SECRET_FILE_PATH: service_account.json
         
         DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
